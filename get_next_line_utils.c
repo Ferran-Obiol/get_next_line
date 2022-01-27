@@ -6,7 +6,7 @@
 /*   By: fobiol-b <fobiol-b@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:50:14 by fobiol-b          #+#    #+#             */
-/*   Updated: 2022/01/26 19:58:35 by fobiol-b         ###   ########.fr       */
+/*   Updated: 2022/01/27 16:06:54 by fobiol-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,37 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	return (dest_size + src_size);
 }
 
-/*char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char			*ret;
+	unsigned int	i;
+	unsigned int	j;
+
+	if (ft_strlen(s) < len)
+		ret = (char *)malloc(ft_strlen(s) + 1);
+	else if (ft_strlen(s) < start)
+		ret = (char *)malloc(1);
+	else
+		ret = (char *)malloc(len + 1);
+	if (ret == NULL)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s[i])
+	{
+		if (i >= start && j < len)
+		{
+			ret[j] = s[i];
+			j ++;
+		}
+		i ++;
+	}
+	ret[j] = '\0';
+	return (ret);
+}
+
+
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*result;
 	int		size1;
@@ -99,4 +129,4 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	}
 	*dst = '\0';
 	return (ft_strlen(src_start));
-}*/
+}

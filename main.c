@@ -5,8 +5,10 @@
 int main(void)
 {
 	int fd = open("/Users/fobiol-b/project/get_next_line/test.txt", O_RDONLY);
+	char *buffer;
 	
-	printf("%s\n", get_next_line(fd));
+	while((buffer = get_next_line(fd)) > 0)
+		printf("%s\n", buffer);
 	return (0);
 }
 
