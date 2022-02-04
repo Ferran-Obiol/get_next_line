@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fobiol-b <fobiol-b@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/26 19:50:14 by fobiol-b          #+#    #+#             */
-/*   Updated: 2022/02/04 11:45:55 by fobiol-b         ###   ########.fr       */
+/*   Created: 2022/02/04 11:53:41 by fobiol-b          #+#    #+#             */
+/*   Updated: 2022/02/04 11:53:45 by fobiol-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(const char *str)
 {

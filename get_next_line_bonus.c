@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fobiol-b <fobiol-b@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 11:14:43 by fobiol-b          #+#    #+#             */
-/*   Updated: 2022/02/04 12:59:18 by fobiol-b         ###   ########.fr       */
+/*   Updated: 2022/02/04 12:58:33 by fobiol-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 #include <stdio.h>
 
 char	*ft_strchr(const char *s, int c)
@@ -78,8 +78,8 @@ static char	*read_until_next_line(char *saved_read, int fd)
 		read_characters = read(fd, read_buffer, BUFFER_SIZE);
 		if (read_characters == -1)
 		{
-			free (read_buffer);
 			free(saved_read);
+			free(read_buffer);
 			return (NULL);
 		}
 		read_buffer [read_characters] = '\0';
@@ -93,20 +93,20 @@ static char	*read_until_next_line(char *saved_read, int fd)
 
 char	*get_next_line(int fd)
 {
-	static char		*saved_read;
+	static char		*saved_read[MAX_FD];
 	char			*line;
 
 	if (fd < 0 || fd > MAX_FD || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (saved_read == NULL)
+	if (saved_read[fd] == NULL)
 	{
-		saved_read = (char *)malloc(1);
-		saved_read[0] = 0;
+		saved_read[fd] = (char *)malloc(1);
+		saved_read[fd][0] = 0;
 	}
-	saved_read = read_until_next_line(saved_read, fd);
-	if (saved_read == NULL)
+	saved_read[fd] = read_until_next_line(saved_read[fd], fd);
+	if (saved_read[fd] == NULL)
 		return (NULL);
-	line = get_buff_until_n(saved_read);
-	saved_read = clean_buffer(saved_read);
+	line = get_buff_until_n(saved_read[fd]);
+	saved_read[fd] = clean_buffer(saved_read[fd]);
 	return (line);
 }
